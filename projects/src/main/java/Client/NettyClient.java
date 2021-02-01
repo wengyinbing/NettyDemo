@@ -44,11 +44,17 @@ public class NettyClient {
                             ch.pipeline()
                                     .addLast(new HttpResponseDecoder())
                                     .addLast(new Encoder())
+
+                                    //.addLast("encoder", new HttpRequestEncoder())
+                                    //.addLast("decoder", new HttpResponseDecoder())   // 1
+
                                     .addLast(new NettyClientHandler());
 
                         }
                     });
 
+            //ChannelFuture f = b.connect().sync();
+            //f.channel().closeFuture().sync();
         }
         catch( Exception e){
             System.out.println("连接客户端出错！");
